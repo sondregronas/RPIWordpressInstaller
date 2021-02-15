@@ -9,9 +9,9 @@ There should be zero requirements except a fresh install of Raspbian. This shell
 It's as simple as copy-pasting the following text:
 
 ```
-git clone https://github.com/sondregronas/RPIWordpressInstaller && \n
-cd RPIWordpressInstaller && \n
-sudo chmod +x rpiwp-install.sh && \n
+git clone https://github.com/sondregronas/RPIWordpressInstaller && \
+cd RPIWordpressInstaller && \
+sudo chmod +x rpiwp-install.sh && \
 sudo ./rpiwp-install.sh
 ```
 
