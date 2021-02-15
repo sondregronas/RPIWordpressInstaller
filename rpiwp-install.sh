@@ -1,0 +1,47 @@
+#!/bin/bash
+echo Welcome to the Wordpress One-click installer
+echo This installer creates a subdirectory for Wordpress
+
+read -p "Type your desired html folder name: " X
+Y=$(hostname -I)
+
+# Make sure Raspbian is up to date
+apt-get update -y
+apt-get upgrade -y
+
+# Install necessary requirements
+apt-get install apache2 -y
+apt-get install php-mysql -y
+apt-get install php -y
+apt-get install mariadb-server php-mysql -y
+
+cd /var/www/html/
+
+# This part is optional, it's responsible for creating subdirectories for additional websites per machine
+mkdir $X
+cd $X
+
+wget http://wordpress.org/latest.tar.gz
+tar xzf latest.tar.gz
+mv wordpress/* .
+rm -rf wordpress latest.tar.gz
+chown -R www-data: .
+
+# This part runs through the secure installer, without setting a root password
+printf "\n n\n y\n y\n y\n y\n" | sudo mysql_secure_installation
+
+# Create a database & user with the X variable
+echo "create database $X;" | mysql -uroot
+echo "CREATE USER '$X'@'localhost' IDENTIFIED BY 'password';" | mysql -uroot
+echo "GRANT ALL ON $X.* TO '$X'@'localhost';" | mysql -uroot
+echo "FLUSH PRIVILEGES;" | mysql -uroot
+
+# Finishing touches
+sudo service apache2 restart
+
+echo ----------------------------------
+echo ----------------------------------
+echo All done, use the Database and Username: $X, 
+echo when setting up your installation at $Y\/$X
+echo ----------------------------------
+echo ----------------------------------
