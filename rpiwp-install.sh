@@ -13,7 +13,7 @@ apt-get upgrade -y
 apt-get install apache2 -y
 apt-get install php-mysql -y
 apt-get install php -y
-apt-get install mariadb-server php-mysql -y
+apt-get install mariadb-server -y
 
 cd /var/www/html/
 
@@ -28,9 +28,10 @@ rm -rf wordpress latest.tar.gz
 chown -R www-data: .
 
 # This part runs through the secure installer, without setting a root password
+# Disables remote access, does not set a root password. Basically yes to everything that isn't password related.
 printf "\n n\n y\n y\n y\n y\n" | sudo mysql_secure_installation
 
-# Create a database & user with the X variable
+# Create a database & user with the X variable. Password is set to 'password', this is the default password for Wordpress
 echo "create database $X;" | mysql -uroot
 echo "CREATE USER '$X'@'localhost' IDENTIFIED BY 'password';" | mysql -uroot
 echo "GRANT ALL ON $X.* TO '$X'@'localhost';" | mysql -uroot
@@ -43,5 +44,6 @@ echo ----------------------------------
 echo ----------------------------------
 echo All done, use the Database and Username: $X, 
 echo when setting up your installation at $Y\/$X
+echo Leave the password as password, and use localhost as the host
 echo ----------------------------------
 echo ----------------------------------
