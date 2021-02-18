@@ -5,7 +5,7 @@ echo This installer creates a subdirectory for Wordpress
 read -p "Type your desired html folder name: " X
 Y=$(hostname -I)
 
-# Make sure Raspbian is up to date
+# Make sure Raspbian is up to date, this part can be optional
 apt-get update -y
 apt-get upgrade -y
 
@@ -43,7 +43,7 @@ sudo service apache2 restart
 echo ----------------------------------
 echo ----------------------------------
 echo All done, use the Database and Username: $X, 
-echo when setting up your installation at $Y\/$X
+echo when setting up your installation at $(hostname -i)/$X
 echo Leave the password as password, and use localhost as the host
 echo ----------------------------------
 echo ----------------------------------
