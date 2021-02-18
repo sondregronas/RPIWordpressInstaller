@@ -14,7 +14,7 @@ When the setup is complete, it'll give you the url, 192.168.10.58/mydirectory, w
 It's as simple as copy-pasting the following text:
 
 ```
-git clone https://github.com/sondregronas/RPIWordpressInstaller && \
+sudo git clone https://github.com/sondregronas/RPIWordpressInstaller && \
 cd RPIWordpressInstaller && \
 sudo chmod +x rpiwp-install.sh && \
 sudo ./rpiwp-install.sh
