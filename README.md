@@ -6,9 +6,9 @@ There should be zero requirements except a Raspberry Pi using Raspbian. Only wor
 The script is written to be easily read and explained for educational purposes
 
 # How it works
-The script prompts you for a directory name, this creates a folder in the `/var/www/html` directory, where it'll install the latest version of WordPress. A database and mysql user is added with the same name, with the password 'password'.
+The script prompts you for a directory name, this creates a folder in the `/var/www/html` directory, where it'll install the latest version of WordPress. A database and mysql user is added with the same name, with the password 'password'. No further configuration needed.
 
-When the setup is complete, it'll give you the url, 192.168.10.58/mydirectory, where you will be able to plot in the directory name. In this instance, Username and Database would be 'mydirectory'
+When the setup is complete, it'll give you an url for the newly created wordpress site.
 
 # Installation
 It's as simple as copy-pasting the following text:
@@ -24,3 +24,5 @@ You may have to run `sudo apt-get install git` beforehand.
 
 You can also put the .sh file on a local machine, and replace git clone & cd with a `wget <url-to-file>`.
 Feel free to modify and adjust to your classrooms needs!
+
+Note: If 2 or more people run the script at the same time certain parts may lock up. If this happens, press CTRL-C to cancel and restart the shell.
