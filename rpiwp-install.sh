@@ -41,7 +41,6 @@ echo "CREATE USER '$target'@'localhost' IDENTIFIED BY 'password';" | mysql -uroo
 echo "GRANT ALL ON $target.* TO '$target'@'localhost';" | mysql -uroot
 echo "FLUSH PRIVILEGES;" | mysql -uroot
 
-# Finishing touches
 sudo service apache2 restart
 
 # Configuring wordpress
@@ -49,10 +48,6 @@ cp wp-config-sample.php wp-config.php
 sed -i "s/database_name_here/$target/g" wp-config.php
 sed -i "s/username_here/$target/g" wp-config.php
 sed -i "s/password_here/password/g" wp-config.php
-
-###########
-# TODO: Send a URL to the Admin Pi & update the adminpi/index.html
-###########
 
 printf "\n\n\n"
 echo - - - - - - - - - - - - - - - - - -
